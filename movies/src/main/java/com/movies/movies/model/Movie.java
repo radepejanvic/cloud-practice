@@ -2,13 +2,11 @@ package com.movies.movies.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
+@Table(name = "sv_10_2021")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
