@@ -1,0 +1,19 @@
+chmod 400 ime_kljuca.pem
+
+icacls ime_kljuca.pem /reset
+icacls ime_kljuca.pem /grant  "$($env:username):(r)"
+icacls ime_kljuca.pem /inheritance:r
+
+scp -i PUTANJA_DO_KLJUCA/IME_KLJUCA.pem PUTANJA_DO_JAR_FAJLA/spring-db-0.1.jar ec2-user@JAVNA_IPv4:/home/ec2-user
+
+ssh -i PUTANJA_DO_KLJUCA/IME_KLJUCA.pem ec2-user@JAVNA_IPv4
+
+export DB_URL=BAZA
+export DB_USERNAME=postgres
+export DB_PASSWORD=postgres
+export DB_DDL=none
+
+sudo yum update -y
+sudo yum install java-11-amazon-corretto -y
+
+java -jar PUTANJA_DO_JARA
