@@ -1,12 +1,12 @@
-FROM maven:3-openjdk-11
-# Set working directory
-WORKDIR /usr/src/app
+FROM amazoncorretto:11
+VOLUME /app
 
-# Copy the project files into the container
-COPY . .
+COPY target/movies-0.0.1-SNAPSHOT.jar movies.jar
 
-# Run Maven build skipping tests
-RUN mvn clean package
+# ENV DB_URL=jdbc:postgresql://filmproba.cps8uueyypv4.eu-central-1.rds.amazonaws.com:5432/postgres
+# ENV DB_USERNAME=postgres
+# ENV DB_PASSWORD=postgres
+# ENV DB_DDL=none
 
-# Specify the command to run the application
-CMD ["java","-jar","target/movies-0.0.1-SNAPSHOT.jar"]
+EXPOSE 8080
+CMD ["java", "-jar", "movies.jar"]
